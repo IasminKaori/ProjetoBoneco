@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=2]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 0.2, 0.2, 0.4 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 0.5, 0.5, 0.2 )
+
+[sub_resource type="Skin" id=3]
+
+[sub_resource type="ShaderMaterial" id=4]
+
+[sub_resource type="CubeMesh" id=5]
+material = SubResource( 4 )
+size = Vector3( 0.5, 0.5, 0.5 )
+subdivide_width = 1
+subdivide_height = 1
+subdivide_depth = 1
+
+[sub_resource type="CubeMesh" id=6]
+size = Vector3( 0.25, 0.1, 0.2 )
+
+[node name="ProjetoMario" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0859714, 0 )
+
+[node name="mario" type="Spatial" parent="."]
+
+[node name="Boneco_Inteiro" type="Spatial" parent="mario"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.983837, 0.479455, 1.037 )
+
+[node name="pe_esquerdo" type="MeshInstance" parent="mario/Boneco_Inteiro"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.487112, 0.369699, 0.19992 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../pe_direito")
+
+[node name="pe_direito" type="MeshInstance" parent="mario/Boneco_Inteiro"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.193918, 0.360634, 0.190649 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../braço_direito")
+
+[node name="braço_esquerdo" type="MeshInstance" parent="mario/Boneco_Inteiro"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.695983, 0.853529, 0.185885 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../braço_direito")
+
+[node name="braço_direito" type="MeshInstance" parent="mario/Boneco_Inteiro"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00385347, 0.853254, 0.210814 )
+mesh = SubResource( 1 )
+
+[node name="corpo" type="MeshInstance" parent="mario/Boneco_Inteiro"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.343955, 0.704972, 0.0796646 )
+mesh = SubResource( 2 )
+skin = SubResource( 3 )
+
+[node name="cabeça" type="MeshInstance" parent="mario/Boneco_Inteiro"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.318482, 1.2901, 0.243315 )
+mesh = SubResource( 5 )
+
+[node name="pescoço" type="MeshInstance" parent="mario/Boneco_Inteiro"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.333044, 0.999478, 0.0838976 )
+mesh = SubResource( 6 )
+
+[node name="piso_poligono" type="CSGPolygon" parent="mario/Boneco_Inteiro"]
+transform = Transform( 0.999466, -0.0322662, -0.00514349, 0.00641338, 0.0393774, 0.999204, -0.032038, -0.998703, 0.0395633, 0.0103893, 0.232262, 0.90969 )
+snap = 0.002
+use_collision = true
+polygon = PoolVector2Array( -0.0272711, 0.763391, 0.216131, 0.906181, 0.483022, 0.898029, 0.721976, 0.742732, 0.714484, 0.555509, 0.503781, 0.407431, 0.188772, 0.409467, -0.0173309, 0.561486 )
+depth = 0.1
